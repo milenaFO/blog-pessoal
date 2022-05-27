@@ -1,0 +1,19 @@
+.box1{
+background-color: rgb(247, 211, 134) !important;
+height: 120px !important;
+}
+
+.redes{
+    font-size: 60px !important;
+    color: white !important;
+}
+
+.box2{
+background-color: rgb(247, 204, 111) !important;
+height: "60px" !important; 
+}
+
+.textos{
+color: yellow!important;
+font-weight: bold !important;
+}
