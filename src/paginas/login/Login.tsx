@@ -7,7 +7,7 @@ import UserLogin from "../../models/UserLogin";
 import "./Login.css";
 
 function Login() {
-    let history = useNavigate();
+    let navigate = useNavigate();
     const [token, setToken] = useLocalStorage("token");
     const [userLogin, setUserLogin] = useState<UserLogin>(
         {
@@ -26,7 +26,7 @@ function Login() {
     }
     useEffect(()=>{
         if(token!=''){
-            history('/home')
+            navigate('/home')
         }
 
     },[token])
@@ -62,8 +62,8 @@ function Login() {
                         <Box marginRight={1}>
                             <Typography variant="subtitle1" gutterBottom align="center">Não tem uma conta?</Typography>
                         </Box>
-                        <Link to="/cadastrousuario">
-                            <Typography variant="subtitle1" gutterBottom align="center" className="textos1">Cadastre-se</Typography>
+                        <Link to="/cadastrousuario" className="text-decorator-none">
+                            <Typography variant="subtitle1" gutterBottom align="center" className="textos1 ">Cadastre-se</Typography>
                         </Link>
 
                     </Box>
