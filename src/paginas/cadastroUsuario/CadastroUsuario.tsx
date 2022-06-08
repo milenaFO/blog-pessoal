@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import User from "../../models/User";
 import { cadastroUsuario } from "../../services/Service";
 import "./CadastroUsuario.css";
+import { toast } from "react-toastify";
 
 function CadastroUsuario() {
     let navigate = useNavigate();
@@ -53,18 +54,45 @@ function CadastroUsuario() {
             //Tenta executar o cadastro
             try {
                 await cadastroUsuario(`/usuarios/cadastrar`, user, setUserResult)
-                alert("Usuário cadastrado com sucesso")
+                toast.success("Usuário cadastrado com sucesso", {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: false,
+                    theme: "colored",
+                    progress: undefined,
+                });
 
                 //Caso tenha algo diferente do padrão solicitado ele mostra mensagem de erro
             } catch (error) {
                 console.log(`Error: ${error}`)
 
                 //Mensagem personalizada de acordo com o erro
-                alert("O usuário já existe")
+                toast.error("O usuário já existe", {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: false,
+                    theme: "colored",
+                    progress: undefined,
+                });
             }
 
         } else {
-            alert("Insira no miníno 8 caracteres na senha.")
+            toast.error("Insira no miníno 8 caracteres na senha.", {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "colored",
+                progress: undefined,
+            });
 
             setUser({ ...user, senha: "" }) // Reinicia o campo de Senha
             setConfirmarSenha("")           // Reinicia o campo de Confirmar Senha

@@ -7,6 +7,7 @@ import './ListaTema.css';
 import { useState, useEffect } from 'react'
 import useLocalStorage from 'react-use-localstorage';
 import { busca } from '../../../services/Service';
+import { toast } from 'react-toastify';
 
 function ListaTema() {
   const [temas, setTemas] = useState<Tema[]>([]) // o ([]) é para inicializar o array que contém todos os temas
@@ -15,7 +16,16 @@ function ListaTema() {
 
   useEffect(() => {
     if (token == "") {
-      alert("É necessário fazer login para acessar este conteúdo")
+      toast.error("Você precisa estar logado",  {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        theme: "colored",
+        progress: undefined,
+    });
       navigate("/login") //se o usuário não estiver logado, vai ser direcionado para a tela de login
     }
   }, [token])
