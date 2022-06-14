@@ -5,14 +5,17 @@ import { Box, Card, CardActions, CardContent, Button, Typography } from '@materi
 import Tema from "../../../models/Tema"
 import './ListaTema.css';
 import { useState, useEffect } from 'react'
-import useLocalStorage from 'react-use-localstorage';
 import { busca } from '../../../services/Service';
 import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
+import { TokenState } from '../../../store/tokens/tokensReducer';
 
 function ListaTema() {
-  const [temas, setTemas] = useState<Tema[]>([]) // o ([]) é para inicializar o array que contém todos os temas
-  const [token, setToken] = useLocalStorage("token") //usar o token para enviar requisição para api
-  let navigate = useNavigate() //redireciona as páginas de acordo com a solicitação - neste caso o login
+  const [temas, setTemas] = useState<Tema[]>([])
+  let navigate = useNavigate();
+  const token = useSelector<TokenState, TokenState["tokens"]>(
+    (state) => state.tokens
+  );
 
   useEffect(() => {
     if (token == "") {
